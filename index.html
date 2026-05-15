@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR1 - Strategic Command Hub</title>
+    <style>
+        :root { 
+            --bg: #0f172a; --card: #1e293b; --primary: #fbbf24; 
+            --accent: #8b5cf6; --text: #f8fafc; --border: #334155; 
+            --bear: #ef4444; --viking: #3b82f6;
+        }
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 40px 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            box-sizing: border-box;
+        }
+        .hub-container { max-width: 1100px; width: 100%; text-align: center; }
+        
+        /* Viking Logo CSS */
+        .viking-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            position: relative;
+            background: var(--primary);
+            border-radius: 50% 50% 10px 10px;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+        }
+        /* Cornes du casque */
+        .viking-logo::before, .viking-logo::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            width: 25px;
+            height: 40px;
+            background: #f8fafc;
+            border-radius: 20px 20px 0 0;
+        }
+        .viking-logo::before {
+            left: -15px;
+            border-radius: 100% 0 0 100%;
+            transform: rotate(-35deg);
+            box-shadow: -4px 4px 0 rgba(0,0,0,0.1) inset;
+        }
+        .viking-logo::after {
+            right: -15px;
+            border-radius: 0 100% 100% 0;
+            transform: rotate(35deg);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1) inset;
+        }
+        /* Lunette/Protection du nez */
+        .viking-nose {
+            position: absolute;
+            bottom: 0;
+            left: 33px;
+            width: 14px;
+            height: 35px;
+            background: #1e293b;
+            border-radius: 0 0 4px 4px;
+        }
+
+        h1 { color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Grid Layout */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        
+        /* Card Styling */
+        .card { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 16px; 
+            padding: 30px 20px; 
+            text-decoration: none; 
+            color: var(--text); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Hover Effects */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: transparent; transition: 0.3s;
+        }
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: #475569;
+        }
+
+        /* Specific Card Themes */
+        .card-sword:hover::before { background: var(--accent); }
+        .card-sword .icon { color: var(--accent); }
+        
+        .card-viking:hover::before { background: var(--viking); }
+        .card-viking .icon { color: var(--viking); }
+        
+        .card-bear:hover::before { background: var(--bear); }
+        .card-bear .icon { color: var(--bear); }
+        
+        .card-analytics:hover::before { background: var(--primary); }
+        .card-analytics .icon { color: var(--primary); }
+
+        /* Card Elements */
+        .icon { font-size: 3rem; margin-bottom: 15px; transition: 0.3s; }
+        .card:hover .icon { transform: scale(1.1); }
+        
+        .card-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .card-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="hub-container">
+    <div class="viking-logo">
+        <div class="viking-nose"></div>
+    </div>
+
+    <h1>⚔️ NR1 STRATEGIC HUB</h1>
+    <div class="subtitle">Alliance Command Center</div>
+
+    <div class="grid-cards">
+        <a href="https://qegukom-create.github.io/NR1-SWORDLAND/" class="card card-sword">
+            <div class="icon">⚔️</div>
+            <div class="card-title">Swordland</div>
+            <div class="card-desc">Manage Legion 1 & 2 rosters, assign tactical roles, and log post-battle event points.</div>
+        </a>
+        
+        <a href="https://qegukom-create.github.io/NR1-VIKINGS/" class="card card-viking">
+            <div class="icon">🛶</div>
+            <div class="card-title">Vikings</div>
+            <div class="card-desc">Dispatching squads and managing core clan formations.</div>
+        </a>
+
+        <a href="https://qegukom-create.github.io/NR1-BEAR/" class="card card-bear">
+            <div class="icon">🐻</div>
+            <div class="card-title">Bear Trap</div>
+            <div class="card-desc">Track member damage and results for Trap 1 & 2 to optimize your team's efficiency.</div>
+        </a>
+
+        <a href="https://qegukom-create.github.io/NR1-DASHBOARD/" class="card card-analytics">
+            <div class="icon">📊</div>
+            <div class="card-title">Analytics</div>
+            <div class="card-desc">Compare all players simultaneously. View long-term performance curves and power growth.</div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

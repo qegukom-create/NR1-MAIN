@@ -8,7 +8,7 @@
         :root { 
             --bg: #0f172a; --card: #1e293b; --primary: #fbbf24; 
             --accent: #8b5cf6; --text: #f8fafc; --border: #334155; 
-            --bear: #ef4444; --viking: #3b82f6;
+            --bear: #ef4444; --viking: #3b82f6; --planner: #10b981;
         }
         body { 
             font-family: 'Segoe UI', system-ui, sans-serif; 
@@ -24,7 +24,7 @@
         }
         .hub-container { max-width: 1100px; width: 100%; text-align: center; }
         
-        /* Viking Logo CSS */
+        /* Viking CSS Logo */
         .viking-logo {
             width: 80px;
             height: 80px;
@@ -34,38 +34,12 @@
             border-radius: 50% 50% 10px 10px;
             box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
         }
-        /* Cornes du casque */
         .viking-logo::before, .viking-logo::after {
-            content: '';
-            position: absolute;
-            top: -15px;
-            width: 25px;
-            height: 40px;
-            background: #f8fafc;
-            border-radius: 20px 20px 0 0;
+            content: ''; position: absolute; top: -15px; width: 25px; height: 40px; background: #f8fafc;
         }
-        .viking-logo::before {
-            left: -15px;
-            border-radius: 100% 0 0 100%;
-            transform: rotate(-35deg);
-            box-shadow: -4px 4px 0 rgba(0,0,0,0.1) inset;
-        }
-        .viking-logo::after {
-            right: -15px;
-            border-radius: 0 100% 100% 0;
-            transform: rotate(35deg);
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.1) inset;
-        }
-        /* Lunette/Protection du nez */
-        .viking-nose {
-            position: absolute;
-            bottom: 0;
-            left: 33px;
-            width: 14px;
-            height: 35px;
-            background: #1e293b;
-            border-radius: 0 0 4px 4px;
-        }
+        .viking-logo::before { left: -15px; border-radius: 100% 0 0 100%; transform: rotate(-35deg); box-shadow: -4px 4px 0 rgba(0,0,0,0.1) inset; }
+        .viking-logo::after { right: -15px; border-radius: 0 100% 100% 0; transform: rotate(35deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.1) inset; }
+        .viking-nose { position: absolute; bottom: 0; left: 33px; width: 14px; height: 35px; background: #1e293b; border-radius: 0 0 4px 4px; }
 
         h1 { color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-size: 2.5rem; margin-bottom: 10px; }
         .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; }
@@ -87,32 +61,38 @@
             align-items: center; 
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         
-        /* Hover Effects */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: transparent; transition: 0.3s;
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: transparent; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); border-color: #475569; }
+
+        /* Badges de restriction */
+        .lock-badge {
+            position: absolute; top: 10px; right: 12px; font-size: 0.7rem; background: rgba(239, 68, 68, 0.2); 
+            color: #f87171; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: bold;
         }
-        .card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: #475569;
+        .public-badge {
+            position: absolute; top: 10px; right: 12px; font-size: 0.7rem; background: rgba(16, 185, 129, 0.2); 
+            color: #34d399; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: bold;
         }
 
-        /* Specific Card Themes */
+        /* Themes */
         .card-sword:hover::before { background: var(--accent); }
         .card-sword .icon { color: var(--accent); }
-        
+
         .card-viking:hover::before { background: var(--viking); }
         .card-viking .icon { color: var(--viking); }
-        
+
+        .card-planner:hover::before { background: var(--planner); }
+        .card-planner .icon { color: var(--planner); }
+
         .card-bear:hover::before { background: var(--bear); }
         .card-bear .icon { color: var(--bear); }
-        
+
         .card-analytics:hover::before { background: var(--primary); }
         .card-analytics .icon { color: var(--primary); }
 
-        /* Card Elements */
         .icon { font-size: 3rem; margin-bottom: 15px; transition: 0.3s; }
         .card:hover .icon { transform: scale(1.1); }
         
@@ -123,39 +103,68 @@
 <body>
 
 <div class="hub-container">
-    <div class="viking-logo">
-        <div class="viking-nose"></div>
-    </div>
+    <div class="viking-logo"><div class="viking-nose"></div></div>
 
     <h1>⚔️ NR1 STRATEGIC HUB</h1>
     <div class="subtitle">Alliance Command Center</div>
 
     <div class="grid-cards">
-        <a href="https://qegukom-create.github.io/NR1-SWORDLAND/" class="card card-sword">
+        <div onclick="checkAccess('https://qegukom-create.github.io/NR1-SWORDLAND/')" class="card card-sword">
+            <span class="lock-badge">🔒 R4/R5 ONLY</span>
             <div class="icon">⚔️</div>
             <div class="card-title">Swordland</div>
             <div class="card-desc">Manage Legion 1 & 2 rosters, assign tactical roles, and log post-battle event points.</div>
-        </a>
+        </div>
         
         <a href="https://qegukom-create.github.io/NR1-VIKINGS/" class="card card-viking">
+            <span class="public-badge">🌐 PUBLIC</span>
             <div class="icon">🛶</div>
             <div class="card-title">Vikings</div>
             <div class="card-desc">Dispatching squads and managing core clan formations.</div>
         </a>
 
-        <a href="https://qegukom-create.github.io/NR1-BEAR/" class="card card-bear">
+        <a href="https://qegukom-create.github.io/NR1-PLANNER/" class="card card-planner">
+            <span class="public-badge">🌐 PUBLIC</span>
+            <div class="icon">📅</div>
+            <div class="card-title">Planner</div>
+            <div class="card-desc">Check upcoming alliance events, battle schedules, and synchronization timers.</div>
+        </a>
+
+        <div onclick="checkAccess('https://qegukom-create.github.io/NR1-BEAR/')" class="card card-bear">
+            <span class="lock-badge">🔒 R4/R5 ONLY</span>
             <div class="icon">🐻</div>
             <div class="card-title">Bear Trap</div>
             <div class="card-desc">Track member damage and results for Trap 1 & 2 to optimize your team's efficiency.</div>
-        </a>
+        </div>
 
-        <a href="https://qegukom-create.github.io/NR1-DASHBOARD/" class="card card-analytics">
+        <div onclick="checkAccess('https://qegukom-create.github.io/NR1-DASHBOARD/')" class="card card-analytics">
+            <span class="lock-badge">🔒 R4/R5 ONLY</span>
             <div class="icon">📊</div>
             <div class="card-title">Analytics</div>
-            <div class="card-desc">Compare all players simultaneously. View long-term performance curves and power growth.</div>
-        </a>
+            <div class="card-desc">Compare all players simultaneously. View alignment performance and power logs.</div>
+        </div>
     </div>
 </div>
 
+<script>
+    // METS TON MOT DE PASSE RESEAU ICI
+    const SECRET_PASSWORD = "NR1KASPER"; 
+
+    function checkAccess(targetUrl) {
+        if (sessionStorage.getItem('isOfficer') === 'true') {
+            window.location.href = targetUrl;
+            return;
+        }
+
+        const userInput = prompt("🔒 Restricted Access (R4/R5 Officers Only):\nPlease enter the security password to access management tools:");
+        
+        if (userInput === SECRET_PASSWORD) {
+            sessionStorage.setItem('isOfficer', 'true');
+            window.location.href = targetUrl;
+        } else if (userInput !== null) {
+            alert("❌ Access Denied: Incorrect officer password.");
+        }
+    }
+</script>
 </body>
 </html>
